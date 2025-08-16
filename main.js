@@ -119,7 +119,8 @@ try {
             ctx.clearRect(0, 0, maxWidth, maxHeight);
 
             //Comment the line bellow to undisplay the horizontal and vertical lines
-            addLines()
+            addLines();
+
 
             if (snake.isWallCollision({ minX: 0, maxX: maxWidth }, { minY: 0, maxY: maxHeight })) {
                 gameOver = true;
@@ -131,7 +132,7 @@ try {
                 const newFoodPosY = Math.floor(Math.random() * (maxHeight / boxSize)) * boxSize;
                 food.update(newFoodPosX, newFoodPosY)
 
-                //Update the score
+                //Updates the score
                 const score = Number.parseInt(scoreSpan.textContent) + 1
                 scoreSpan.textContent = score + "";
             }
@@ -139,6 +140,10 @@ try {
             snake.move();
             food.draw();
             snake.draw();
+
+            if (snake.isSelefCollision()) {
+                gameOver = true;
+            }
         }
     }, 150) //you can decrease this delay argument to make the snake moves faster
 }

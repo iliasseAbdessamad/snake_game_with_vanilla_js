@@ -102,8 +102,11 @@ export class Snake extends Square {
      */
     draw() {
         this.ctx.fillStyle = this.color;
+        this.ctx.strokeStyle = "grey";
         for (let part of this.#snakeParts) {
             this.ctx.fillRect(part.posX, part.posY, this.width, this.width);
+            this.ctx.strokeRect(part.posX, part.posY, this.width, this.width);
+
         }
     }
 
@@ -172,7 +175,7 @@ export class Snake extends Square {
     isWallCollision(xCoordinates, yCoordinates) {
         const { minX, maxX } = { ...xCoordinates };
         const { minY, maxY } = { ...yCoordinates };
-        let snakeHead = this.#snakeParts[0];
+        const snakeHead = this.#snakeParts[0];
 
         return snakeHead.posX < minX || snakeHead.posX > maxX || snakeHead.posY < minY || snakeHead.posY > maxY
     }
@@ -188,9 +191,25 @@ export class Snake extends Square {
             throw new Error("the food parameter must be an instance of the Food class")
         }
 
-        let snakeHead = this.#snakeParts[0];
+        const snakeHead = this.#snakeParts[0];
 
         return snakeHead.posX == food.posX && snakeHead.posY == food.posY;
+    }
+
+    /**
+     * Checks the collision between the body parts and the head
+     * 
+     * @returns {void}
+     */
+    isSelefCollision() {
+        const snakeHead = this.#snakeParts[0];
+
+        for (let i = 1; i < this.#snakeParts.length; i++) {
+            const part = this.#snakeParts[i];
+            if (part.posX == snakeHead.posX && part.posY == snakeHead.posY && part != snakeHead) {
+                return true;
+            }
+        }
     }
 
     /**
