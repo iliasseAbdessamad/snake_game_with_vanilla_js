@@ -1,0 +1,23 @@
+body {
+    display: flex;
+    justify-content: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#gameBoard {
+    border: 2px solid red;
+    background-color: black;
+}
+
+#gameContainer {
+    position: relative;
+    width: fit-content;
+}
+
+#scoreText {
+    position: absolute;
+    top: 6px;
+    right: 10px;
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 16px;
+}
