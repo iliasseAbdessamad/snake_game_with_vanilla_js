@@ -11,7 +11,9 @@ const canvas = document.getElementById("gameBoard");
 const maxWidth = canvas.width;
 const maxHeight = canvas.height;
 const ctx = canvas.getContext("2d");
+const scoreSpan = document.getElementById("score");
 let gameOver = false;
+
 
 /**
  * @type {() => void} - Draws horizontal lines on the game board
@@ -128,13 +130,17 @@ try {
                 const newFoodPosX = Math.floor(Math.random() * (maxWidth / boxSize)) * boxSize;
                 const newFoodPosY = Math.floor(Math.random() * (maxHeight / boxSize)) * boxSize;
                 food.update(newFoodPosX, newFoodPosY)
+
+                //Update the score
+                const score = Number.parseInt(scoreSpan.textContent) + 1
+                scoreSpan.textContent = score + "";
             }
 
             snake.move();
             food.draw();
             snake.draw();
         }
-    }, 1000) //you can decrease this delay argument to make the snake moves faster
+    }, 150) //you can decrease this delay argument to make the snake moves faster
 }
 catch (e) {
     console.log({ e });
