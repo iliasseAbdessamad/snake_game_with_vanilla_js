@@ -28,4 +28,16 @@ export class Food extends Square {
             throw new ShapeError("The size of the food must be greater than 0", { cause: e });
         }
     }
+
+    /**
+     * Updates the position of the food instance
+     * 
+     * @param {number} newPosX - The new position of the food on the X - axis
+     * @param {number} newPosY - The new position of the food on the Y - axis
+     * @returns {void}
+     */
+    update(newPosX, newPosY) {
+        this.posX = newPosX;
+        this.posY = newPosY;
+    }
 }

@@ -194,6 +194,22 @@ export class Snake extends Square {
     }
 
     /**
+     * Makes the snake grow
+     * 
+     * @param {{x: number, y:number}} bodyPartPosition - The posisition of the new body part
+     * @return {void}
+     */
+    grow(bodyPartPosition) {
+        const { x, y } = { ...bodyPartPosition };
+
+        //adds the new body part as a head of the snake
+        this.#snakeParts.unshift({
+            posX: x,
+            posY: y
+        })
+    }
+
+    /**
      * @returns {void}
      */
     goLeft() {

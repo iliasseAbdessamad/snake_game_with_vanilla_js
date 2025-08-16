@@ -124,14 +124,17 @@ try {
             }
 
             if (snake.isFoodCollisition(food)) {
-                console.log("food collision");
+                snake.grow({ x: food.posX, y: food.posY });
+                const newFoodPosX = Math.floor(Math.random() * (maxWidth / boxSize)) * boxSize;
+                const newFoodPosY = Math.floor(Math.random() * (maxHeight / boxSize)) * boxSize;
+                food.update(newFoodPosX, newFoodPosY)
             }
 
             snake.move();
             food.draw();
             snake.draw();
         }
-    }, 150) //you can decrease this delay argument to make the snake moves faster
+    }, 1000) //you can decrease this delay argument to make the snake moves faster
 }
 catch (e) {
     console.log({ e });
