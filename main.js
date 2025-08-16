@@ -60,29 +60,47 @@ const animate = (callback, delay) => {
 };
 
 
+/**
+ * Adds horizontal and vertical lines on the game board
+ * 
+ * @type {Function} 
+ * @returns {void} 
+ */
+const addLines = () => {
+    drawHorizontalLines();
+    drawVerticalLines();
+}
 
-//Comment those lines if want to undisplay the horizontal and vertical lines
-drawHorizontalLines();
-drawVerticalLines();
 
+
+
+
+
+
+//Comment the line bellow to undisplay the horizontal and vertical lines
+addLines()
 
 
 try {
     let f = new Food(ctx, (20 * boxSize), (20 * boxSize), boxSize, "red");
+    let s = new Snake(ctx, 10 * boxSize, 10 * boxSize, boxSize, 0, boxSize, "green", true);
+    //let's draw food and snake when the page load
     f.draw();
-
-    let s = new Snake(
-        ctx,
-        10 * boxSize,
-        10 * boxSize,
-        boxSize,
-        boxSize,
-        boxSize,
-        "green",
-        true
-    );
-
     s.draw();
+
+
+    //Let's animate our game
+    animate(function () {
+        //we must clear the boad before redrawing
+        ctx.clearRect(0, 0, maxWidth, maxHeight);
+
+        //Comment the line bellow to undisplay the horizontal and vertical lines
+        addLines()
+
+        f.draw();
+        s.draw();
+        s.move();
+    }, 150) //you can decrease this delay argument to make the snake moves faster
 }
 catch (e) {
     console.log({ e });

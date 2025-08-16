@@ -74,11 +74,27 @@ export class Snake extends Square {
         }
     }
 
+    /**
+     * Draws a snake on the canvas HTML5 element
+     * 
+     * @returns {void}
+     */
     draw() {
         this.ctx.fillStyle = this.color;
         for (let part of this.#snakeParts) {
             this.ctx.fillRect(part.posX, part.posY, this.width, this.width);
+        }
+    }
 
+    /**
+     * updates the snake's coordinates (x, y) based on its x and y velocities
+     * 
+     * @returns {void}
+     */
+    move() {
+        for (let part of this.#snakeParts) {
+            part.posX += this.#velX;
+            part.posY += this.#velY;
         }
     }
 }
