@@ -12,7 +12,13 @@ const maxWidth = canvas.width;
 const maxHeight = canvas.height;
 const ctx = canvas.getContext("2d");
 const scoreSpan = document.getElementById("score");
+const gameOverDiv = document.getElementById("gameOver");
+const btnReset = gameOverDiv.querySelector("button");
 let gameOver = false;
+
+//You can decrease this value for more speed 
+let snakeSpeed = 170;
+
 
 
 /**
@@ -78,7 +84,8 @@ const addLines = () => {
 
 
 
-
+//hides the gameOver div
+gameOverDiv.style.display = "none";
 
 //Comment the line bellow to undisplay the horizontal and vertical lines
 addLines()
@@ -87,6 +94,15 @@ addLines()
 try {
     let food = new Food(ctx, (20 * boxSize), (20 * boxSize), boxSize, "red");
     let snake = new Snake(ctx, 10 * boxSize, 10 * boxSize, boxSize, 0, boxSize, "green", true);
+
+    //resets the game 
+    btnReset.addEventListener("click", e => {
+        food = new Food(ctx, (20 * boxSize), (20 * boxSize), boxSize, "red");
+        snake = new Snake(ctx, 10 * boxSize, 10 * boxSize, boxSize, 0, boxSize, "green", true);
+
+        gameOverDiv.style.display = "none";
+        gameOver = false
+    })
 
     //let's draw food and snake when the page load
     food.draw();
@@ -145,7 +161,10 @@ try {
                 gameOver = true;
             }
         }
-    }, 150) //you can decrease this delay argument to make the snake moves faster
+        else {
+            gameOverDiv.style.display = "flex";
+        }
+    }, snakeSpeed)
 }
 catch (e) {
     console.log({ e });

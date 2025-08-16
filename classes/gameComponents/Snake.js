@@ -236,6 +236,7 @@ export class Snake extends Square {
             this.#velX = -this.width;
             this.#velY = 0;
         }
+        console.log(this.#snakeParts.length)
     }
 
     /**
