@@ -66,6 +66,22 @@ export class Square {
     }
 
     /**
+     * @param {number} value 
+     * @returns {void}
+     */
+    set posX(value) {
+        this.#posX = value;
+    }
+
+    /**
+     * @param {number} value 
+     * @returns {void}
+     */
+    set posY(value) {
+        this.#posY = value;
+    }
+
+    /**
      * @returns {number} - The width of the square
      */
     get width() {
