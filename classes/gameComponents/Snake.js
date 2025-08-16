@@ -28,6 +28,19 @@ export class Snake extends Square {
     /**@type {number} */
     #velY;
 
+    /**
+     * The previous position en the X axis
+     * 
+     * @type {number} 
+     */
+    #previousX;
+
+    /**
+     * The previous position en the Y axis
+     * 
+     * @type {number} 
+     */
+    #previousY;
 
     /**
      * Creates a Food object 
@@ -48,6 +61,13 @@ export class Snake extends Square {
             super(ctx, posX, posY, snakePartWidth, color);
             this.#velX = velX;
             this.#velY = velY;
+
+            /*
+            * those properties will help us to know if the snake can go up, down, right, or left.
+            * e.g : Te snake can not go directely from left to right
+            */
+            this.#previousX = posX;
+            this.#previousY = posY;
 
             //Pushing the snake head in the snakeParts array
             this.#snakeParts.push({
@@ -92,9 +112,105 @@ export class Snake extends Square {
      * @returns {void}
      */
     move() {
-        for (let part of this.#snakeParts) {
-            part.posX += this.#velX;
-            part.posY += this.#velY;
+
+        this.#previousX = this.posX;
+        this.#previousY = this.posY;
+
+        for (let i = this.#snakeParts.length - 1; i >= 0; i--) {
+
+            if (i !== 0) {
+                this.#snakeParts[i].posX = this.#snakeParts[i - 1].posX;
+                this.#snakeParts[i].posY = this.#snakeParts[i - 1].posY;
+            }
+            else {
+                this.#snakeParts[i].posX += this.#velX;
+                this.#snakeParts[i].posY += this.#velY;
+                this.posX = this.#snakeParts[i].posX;
+                this.posY = this.#snakeParts[i].posY;
+            }
         }
     }
+
+    /**
+     * @returns {void}
+     */
+    goUp() {
+        if (this.#canGoUp()) {
+            this.#velY = -this.width;
+            this.#velX = 0;
+        }
+    }
+
+    /**
+     * @returns {void}
+     */
+    goRight() {
+        if (this.#canGoRight()) {
+            this.#velX = this.width;
+            this.#velY = 0;
+        }
+    }
+
+    /**
+     * @returns {void}
+     */
+    goDown() {
+        if (this.#canGoDown()) {
+            this.#velY = this.width;
+            this.#velX = 0;
+        }
+    }
+
+    /**
+     * @returns {void}
+     */
+    goLeft() {
+        if (this.#canGoLeft()) {
+            this.#velX = -this.width;
+            this.#velY = 0;
+        }
+    }
+
+    /**
+     * Checks if the snake can go up
+     * 
+     * @returns {boolean} 
+     */
+    #canGoUp() {
+        //The snake can go up if Y axis doesn't change between its moves
+        return this.#previousY == this.posY;
+    }
+
+    /**
+     * Checks if the snake can go right
+     * 
+     * @returns {boolean} 
+     */
+    #canGoRight() {
+        //The snake can go right if X axis doesn't change between its moves
+        return this.#previousX == this.posX;
+    }
+
+    /**
+     * Checks if the snake can go down
+     * 
+     * @returns {boolean} 
+     */
+    #canGoDown() {
+        //The snake can go down if Y axis doesn't change between its moves
+        return this.#previousY == this.posY;
+    }
+
+    /**
+     * Checks if the snake can go left
+     * 
+     * @returns {boolean} 
+     */
+    #canGoLeft() {
+        //The snake can go left if X axis doesn't change between its moves
+        console.log(this.#previousX, this.posX)
+        return this.#previousX == this.posX;
+    }
+
+
 }

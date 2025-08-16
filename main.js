@@ -84,6 +84,25 @@ addLines()
 try {
     let f = new Food(ctx, (20 * boxSize), (20 * boxSize), boxSize, "red");
     let s = new Snake(ctx, 10 * boxSize, 10 * boxSize, boxSize, 0, boxSize, "green", true);
+
+    document.addEventListener("keydown", function (e) {
+        const code = e.code;
+        switch (code) {
+            case "ArrowUp":
+                s.goUp();
+                break;
+            case "ArrowRight":
+                s.goRight()
+                break;
+            case "ArrowDown":
+                s.goDown();
+                break;
+            case "ArrowLeft":
+                s.goLeft();
+                break;
+        }
+    })
+
     //let's draw food and snake when the page load
     f.draw();
     s.draw();
@@ -97,10 +116,11 @@ try {
         //Comment the line bellow to undisplay the horizontal and vertical lines
         addLines()
 
+        s.move();
         f.draw();
         s.draw();
-        s.move();
-    }, 150) //you can decrease this delay argument to make the snake moves faster
+
+    }, 1000) //you can decrease this delay argument to make the snake moves faster
 }
 catch (e) {
     console.log({ e });
