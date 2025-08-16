@@ -162,6 +162,24 @@ export class Snake extends Square {
     }
 
     /**
+     * Checks if there is a collision bewteen the snake and the game screen borders
+     * 
+     * @param {{minX:number, maxX:number}} xCoordinates - The min and max x coordinates of the wall
+     * @param {{minY:number, maxY:number}} yCoordinates - The min and max y coordinates of the wall
+     */
+    isWallCollision(xCoordinates, yCoordinates) {
+        const { minX, maxX } = { ...xCoordinates };
+        const { minY, maxY } = { ...yCoordinates };
+        let snakeHead = this.#snakeParts[0];
+
+        if (snakeHead.posX < minX || snakeHead.posX > maxX || snakeHead.posY < minY || snakeHead.posY > maxY) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
      * @returns {void}
      */
     goLeft() {

@@ -11,6 +11,7 @@ const canvas = document.getElementById("gameBoard");
 const maxWidth = canvas.width;
 const maxHeight = canvas.height;
 const ctx = canvas.getContext("2d");
+let gameOver = false;
 
 /**
  * @type {() => void} - Draws horizontal lines on the game board
@@ -111,16 +112,21 @@ try {
 
     //Let's animate our game
     animate(function () {
-        //we must clear the boad before redrawing
-        ctx.clearRect(0, 0, maxWidth, maxHeight);
+        if (!gameOver) {
+            //we must clear the boad before redrawing
+            ctx.clearRect(0, 0, maxWidth, maxHeight);
 
-        //Comment the line bellow to undisplay the horizontal and vertical lines
-        addLines()
+            //Comment the line bellow to undisplay the horizontal and vertical lines
+            addLines()
 
-        snake.move();
-        food.draw();
-        snake.draw();
+            if (snake.isWallCollision({ minX: 0, maxX: maxWidth }, { minY: 0, maxY: maxHeight })) {
+                gameOver = true;
+            }
 
+            snake.move();
+            food.draw();
+            snake.draw();
+        }
     }, 150) //you can decrease this delay argument to make the snake moves faster
 }
 catch (e) {
