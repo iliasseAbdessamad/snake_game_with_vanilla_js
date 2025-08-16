@@ -208,7 +208,6 @@ export class Snake extends Square {
      */
     #canGoLeft() {
         //The snake can go left if X axis doesn't change between its moves
-        console.log(this.#previousX, this.posX)
         return this.#previousX == this.posX;
     }
 

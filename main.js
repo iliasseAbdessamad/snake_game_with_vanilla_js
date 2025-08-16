@@ -82,30 +82,31 @@ addLines()
 
 
 try {
-    let f = new Food(ctx, (20 * boxSize), (20 * boxSize), boxSize, "red");
-    let s = new Snake(ctx, 10 * boxSize, 10 * boxSize, boxSize, 0, boxSize, "green", true);
+    let food = new Food(ctx, (20 * boxSize), (20 * boxSize), boxSize, "red");
+    let snake = new Snake(ctx, 10 * boxSize, 10 * boxSize, boxSize, 0, boxSize, "green", true);
+
+    //let's draw food and snake when the page load
+    food.draw();
+    snake.draw();
 
     document.addEventListener("keydown", function (e) {
         const code = e.code;
         switch (code) {
             case "ArrowUp":
-                s.goUp();
+                snake.goUp();
                 break;
             case "ArrowRight":
-                s.goRight()
+                snake.goRight()
                 break;
             case "ArrowDown":
-                s.goDown();
+                snake.goDown();
                 break;
             case "ArrowLeft":
-                s.goLeft();
+                snake.goLeft();
                 break;
         }
     })
 
-    //let's draw food and snake when the page load
-    f.draw();
-    s.draw();
 
 
     //Let's animate our game
@@ -116,11 +117,11 @@ try {
         //Comment the line bellow to undisplay the horizontal and vertical lines
         addLines()
 
-        s.move();
-        f.draw();
-        s.draw();
+        snake.move();
+        food.draw();
+        snake.draw();
 
-    }, 1000) //you can decrease this delay argument to make the snake moves faster
+    }, 150) //you can decrease this delay argument to make the snake moves faster
 }
 catch (e) {
     console.log({ e });
