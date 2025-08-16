@@ -123,6 +123,10 @@ try {
                 gameOver = true;
             }
 
+            if (snake.isFoodCollisition(food)) {
+                console.log("food collision");
+            }
+
             snake.move();
             food.draw();
             snake.draw();

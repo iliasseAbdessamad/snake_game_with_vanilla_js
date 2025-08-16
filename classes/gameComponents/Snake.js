@@ -1,6 +1,7 @@
 
 import { Square } from "../Square.js";
 import { ShapeError } from "../ShapeError.js";
+import { Food } from "./Food.js";
 
 
 
@@ -166,17 +167,30 @@ export class Snake extends Square {
      * 
      * @param {{minX:number, maxX:number}} xCoordinates - The min and max x coordinates of the wall
      * @param {{minY:number, maxY:number}} yCoordinates - The min and max y coordinates of the wall
+     * @returns {boolean}
      */
     isWallCollision(xCoordinates, yCoordinates) {
         const { minX, maxX } = { ...xCoordinates };
         const { minY, maxY } = { ...yCoordinates };
         let snakeHead = this.#snakeParts[0];
 
-        if (snakeHead.posX < minX || snakeHead.posX > maxX || snakeHead.posY < minY || snakeHead.posY > maxY) {
-            return true;
+        return snakeHead.posX < minX || snakeHead.posX > maxX || snakeHead.posY < minY || snakeHead.posY > maxY
+    }
+
+    /**
+     * Checks if there is a collision bewteen the snake and the food
+     * 
+     * @param {Food} food 
+     * @returns {boolean}
+     */
+    isFoodCollisition(food) {
+        if (!(food instanceof Food)) {
+            throw new Error("the food parameter must be an instance of the Food class")
         }
 
-        return false;
+        let snakeHead = this.#snakeParts[0];
+
+        return snakeHead.posX == food.posX && snakeHead.posY == food.posY;
     }
 
     /**
