@@ -87,8 +87,8 @@ const addLines = () => {
 //hides the gameOver div
 gameOverDiv.style.display = "none";
 
-//Comment the line bellow to undisplay the horizontal and vertical lines
-addLines()
+//Uncomment the line bellow to undisplay the horizontal and vertical lines
+//addLines()
 
 
 try {
@@ -134,8 +134,8 @@ try {
             //we must clear the boad before redrawing
             ctx.clearRect(0, 0, maxWidth, maxHeight);
 
-            //Comment the line bellow to undisplay the horizontal and vertical lines
-            addLines();
+            //unomment the line bellow to display the horizontal and vertical lines
+            //addLines();
 
 
             if (snake.isWallCollision({ minX: 0, maxX: maxWidth }, { minY: 0, maxY: maxHeight })) {
