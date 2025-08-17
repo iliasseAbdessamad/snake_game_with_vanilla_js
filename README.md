@@ -37,8 +37,9 @@ Ce projet a été conçu dans le but de renforcer ma compréhension du **DOM**,
 
 **Ecran de jeu divisé en bloc (lines et colonnes)**
 <img src="./imgs/1.png" alt="capture d'écran du jeu" />
+<br/>
 
-**Ecran de jeu sans lines et colonnes**
+**Ecran de jeu sans lines et colonnes** <br/>
 <img src="./imgs/2.png" alt="capture d'écran du jeu" />
 
 
@@ -58,6 +59,11 @@ cd snake_game_with_vanilla_js
 ```
 php -S localhost:8988
 ``` 
+
+4 - Saisissez l'url suivant dans un navigateur (modèrne)
+```
+http://localhost:8988
+``` 
  
 
 <br />
@@ -66,6 +72,6 @@ php -S localhost:8988
 
 - **💻 Réalisé par :** Iliasse Abdessamad
 - **📖 But :** renforcer mes connaissances en javascript (vanilla), et jsDoc 
-- **Année :** 2024 - 2025
+- **📅 Année :** 2024 - 2025
 
 
