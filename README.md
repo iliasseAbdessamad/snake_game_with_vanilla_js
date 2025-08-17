@@ -36,10 +36,10 @@ Ce projet a été conçu dans le but de renforcer ma compréhension du **DOM**,
 ## 📸 Captures d'écran :
 
 **Ecran de jeu divisé en bloc (lines et colonnes)**
-<img src="1.png" alt="capture d'écran du jeu" />
+<img src="./imgs/1.png" alt="capture d'écran du jeu" />
 
 **Ecran de jeu sans lines et colonnes**
-<img src="2.png" alt="capture d'écran du jeu" />
+<img src="./imgs/2.png" alt="capture d'écran du jeu" />
 
 
 ## ✅ Essayez le jeu :
